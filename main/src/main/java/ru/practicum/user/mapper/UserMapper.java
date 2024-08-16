@@ -8,7 +8,7 @@ import ru.practicum.user.model.User;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = UserDto.class)
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
     User toUser(NewUserRequest userRequest);
