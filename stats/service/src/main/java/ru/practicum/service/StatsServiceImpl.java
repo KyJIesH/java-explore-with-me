@@ -30,7 +30,6 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    @Transactional
     public List<ResponseStatsDto> getStats(RequestStatsDto requestStatsDto) {
         log.info("{} - Обработка запроса на получение статистики по посещениям {}", TAG, requestStatsDto);
         List<ResponseStatsDto> responseStatsDtos = new ArrayList<>();

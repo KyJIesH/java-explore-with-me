@@ -14,7 +14,7 @@ import ru.practicum.StatsDto;
 import ru.practicum.service.StatsService;
 import ru.practicum.validation.ValidationDate;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
