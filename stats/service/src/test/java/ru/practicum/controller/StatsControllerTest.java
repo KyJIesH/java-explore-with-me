@@ -44,7 +44,7 @@ class StatsControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/hit")
                         .content(objectMapper.writeValueAsString(statsDto))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -67,15 +67,6 @@ class StatsControllerTest {
                         .content(objectMapper.writeValueAsString(responseStatsDto)))
                 .andExpect(status().isBadRequest());
     }
-
-//    @Test
-//    void getStatsTestIncorrectChangedDate() throws Exception {
-//        when(statsService.getStats(any())).thenReturn(responseStatsDtos);
-//
-//        mockMvc.perform(get("/stats?start=2035-05-05 00:00:00&end=2020-05-05 00:00:00&unique=false")
-//                        .content(objectMapper.writeValueAsString(responseStatsDto)))
-//                .andExpect(status().isBadRequest());
-//    }
 
     @Test
     void getStatsTestIncorrectDate() throws Exception {
