@@ -14,7 +14,7 @@ import ru.practicum.StatsDto;
 import ru.practicum.service.StatsService;
 import ru.practicum.validation.ValidationDate;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,10 +26,11 @@ public class StatsController {
     private final StatsService statsService;
 
     @PostMapping("/hit")
-    public void createStat(@Valid @RequestBody StatsDto statsDto) {
+    public ResponseEntity<String> createStat(@Valid @RequestBody StatsDto statsDto) {
         log.info("{} - Пришел запрос на сохранение информации о том, " +
                 "что на uri конкретного сервиса был отправлен запрос пользователем (POST /hit)", TAG);
         statsService.createStats(statsDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/stats")

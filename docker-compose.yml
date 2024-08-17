@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 services:
   stats-server:
     build: stats/service
@@ -12,11 +12,11 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#      - SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
 
   stats-db:
-    image: postgres:14-alpine
+    image: postgres:16.1
     container_name: stats-db-container
     ports:
       - "6541:5432"
@@ -31,6 +31,23 @@ services:
     container_name: main-container
     ports:
       - "8080:8080"
+    depends_on:
+      - main-db
+      - stats-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://main-db:5432/main
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#      - SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - SERVICE_URL=http://stats-server:9090
 
-#  ewm-db:
-#    image: postgres:14-alpine
+  main-db:
+    image: postgres:16.1
+    container_name: main-db-container
+    ports:
+      - "7541:5432"
+    environment:
+      - POSTGRES_DB=main
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
