@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -46,6 +47,7 @@ import static ru.practicum.event.model.State.*;
 @Service
 @Slf4j
 @AllArgsConstructor
+@ComponentScan(basePackages = {"ru.practicum.client"})
 public class EventServiceImpl implements EventService {
 
     private static final String TAG = "EVENT SERVICE";
