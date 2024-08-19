@@ -42,7 +42,7 @@ public class EventPrivateController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/{eventId}/requests")
+    @PatchMapping("/{eventId}/requests/")
     public ResponseEntity<EventRequestStatusUpdateResult> updateStatusEvent(@PathVariable Long userId,
                                                                             @PathVariable Long eventId,
                                                                             @RequestBody EventRequestStatusUpdateRequest
